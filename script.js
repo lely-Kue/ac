@@ -86,20 +86,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (passwordInput.value.toUpperCase() === 'AC') {
             // Success!
             
-            // 1. Hide Overlay
+            // 1. Play audio synchronously with interaction!
+            audioContainer.innerHTML = `<iframe width="300" height="200" src="https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; left: -9999px;"></iframe>`;
+
+            // 2. Hide Overlay
             loginOverlay.style.opacity = '0';
             setTimeout(() => {
                 loginOverlay.style.visibility = 'hidden';
                 loginOverlay.style.display = 'none';
                 
-                // 2. Trigger body animations
+                // 3. Trigger body animations
                 startCelebration();
                 setInterval(startCelebration, 10000);
-                
-                // 3. Play audio by injecting iframe
-                // Requires user interaction (clicking unlock) to allow autoplay
-                audioContainer.innerHTML = `<iframe width="1" height="1" src="https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
             }, 800);
+
 
         } else {
             // Failure
